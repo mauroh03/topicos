@@ -8,7 +8,6 @@ def cargar():
     global df
     df = pd.read_csv('./resumen_mes.csv', index_col="Fecha")
     label1 = Label(ventana, text="CSV cargado...", fg="green").place(relx=.5, rely=.05, anchor="center")
-    text.insert(INSERT, str(df.index.values)+"\t\t"+str(df['Calorias_(kcal)'])+"\t\t"+str(df['Dormir_duracion_(ms)'])+"\t\t"+str(df['Distancia_(m)'])+"\t\t"+str(df['Frecuencia_cardiaca_media_(ppm)']))
 
 def prueba():
     for line in df:
