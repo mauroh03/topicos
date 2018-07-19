@@ -1,0 +1,305 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>semestral &#8212; Semestral 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for semestral</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">interactive</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">interactive</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="k">import</span> <span class="n">ttk</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: semestral</span>
+<span class="sd">   :platform: Unix, Windows</span>
+<span class="sd">   :synopsis: trabajo final topicos.</span>
+
+<span class="sd">.. moduleauthor:: Mauro Herrera &lt;mauro-507@hotmail.com&gt;</span>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="cargar"><a class="viewcode-back" href="../index.html#semestral.cargar">[docs]</a><span class="k">def</span> <span class="nf">cargar</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;En esta funcion se carga el archivo .csv que contiene ls datos registrados tras 3 meses de uso de la Xiaomi MiBand2.</span>
+
+<span class="sd">    &gt;&gt;&gt; fullDf = pd.read_csv(&#39;./resumen_mes.csv&#39;)</span>
+<span class="sd">    archivo csv cargado...</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">df</span>
+    <span class="k">global</span> <span class="n">fullDf</span>
+    <span class="n">fullDf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./resumen_mes.csv&#39;</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./resumen_mes.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;Fecha&quot;</span><span class="p">)</span>
+    <span class="n">label1</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;CSV cargado...&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">relx</span><span class="o">=.</span><span class="mi">105</span><span class="p">,</span> <span class="n">rely</span><span class="o">=.</span><span class="mi">15</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+
+    <span class="c1"># col1</span>
+    <span class="n">col1</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="n">ventana</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="n">strCol1</span><span class="p">)</span>
+    <span class="n">col1</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">relx</span><span class="o">=.</span><span class="mi">225</span><span class="p">,</span> <span class="n">rely</span><span class="o">=.</span><span class="mi">330</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+    <span class="n">col1</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+    <span class="n">col1</span><span class="o">.</span><span class="n">current</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># col2</span>
+    <span class="n">col2</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="n">ventana</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="n">strCol2</span><span class="p">)</span>
+    <span class="n">col2</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+    <span class="n">col2</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">relx</span><span class="o">=.</span><span class="mi">425</span><span class="p">,</span> <span class="n">rely</span><span class="o">=.</span><span class="mi">330</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+    <span class="n">col2</span><span class="o">.</span><span class="n">current</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># col3</span>
+    <span class="n">col3</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="n">ventana</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="n">strCol3</span><span class="p">)</span>
+    <span class="n">col3</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">relx</span><span class="o">=.</span><span class="mi">625</span><span class="p">,</span> <span class="n">rely</span><span class="o">=.</span><span class="mi">330</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+    <span class="n">col3</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+    <span class="n">col3</span><span class="o">.</span><span class="n">current</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># col4</span>
+    <span class="n">col4</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="n">ventana</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="n">strCol4</span><span class="p">)</span>
+    <span class="n">col4</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">relx</span><span class="o">=.</span><span class="mi">825</span><span class="p">,</span> <span class="n">rely</span><span class="o">=.</span><span class="mi">330</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+    <span class="n">col4</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+    <span class="n">col4</span><span class="o">.</span><span class="n">current</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="grafica"><a class="viewcode-back" href="../index.html#semestral.grafica">[docs]</a><span class="k">def</span> <span class="nf">grafica</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;la funcion grafica() se encarga de hacer las graficas de las columnas elejidas por el usuario.</span>
+
+<span class="sd">        &gt;&gt;&gt; Puntos.</span>
+<span class="sd">            genera una grafica .scatter()</span>
+
+<span class="sd">        &gt;&gt;&gt; Barars.</span>
+<span class="sd">            genera una grafica .bars()</span>
+
+<span class="sd">        &gt;&gt;&gt; Linea.</span>
+<span class="sd">            genera una grafica .plot()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">strGraphType</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Puntos&#39;</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">indexDf</span><span class="p">[</span><span class="s1">&#39;Fecha&#39;</span><span class="p">],</span><span class="n">indexDf</span><span class="p">[</span><span class="n">strFieldToGraph</span><span class="o">.</span><span class="n">get</span><span class="p">()])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">strFieldToGraph</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Grafico de &#39;</span><span class="o">+</span><span class="n">strFieldToGraph</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+        <span class="n">interactive</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">strGraphType</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Barras&#39;</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">indexDf</span><span class="p">[</span><span class="s1">&#39;Fecha&#39;</span><span class="p">],</span><span class="n">indexDf</span><span class="p">[</span><span class="n">strFieldToGraph</span><span class="o">.</span><span class="n">get</span><span class="p">()])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">strFieldToGraph</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Grafico de &#39;</span><span class="o">+</span><span class="n">strFieldToGraph</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+        <span class="n">interactive</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">indexDf</span><span class="p">[</span><span class="s1">&#39;Fecha&#39;</span><span class="p">],</span><span class="n">indexDf</span><span class="p">[</span><span class="n">strFieldToGraph</span><span class="o">.</span><span class="n">get</span><span class="p">()])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">strFieldToGraph</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Grafico de &#39;</span><span class="o">+</span><span class="n">strFieldToGraph</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+        <span class="n">interactive</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Fecha&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="insertar"><a class="viewcode-back" href="../index.html#semestral.insertar">[docs]</a><span class="k">def</span> <span class="nf">insertar</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;la funcion insertar() inserta los datos del archivo .csv a la tabla que se le muestra al usuario.</span>
+
+<span class="sd">        &gt;&gt;&gt; text.insert(INSERT, &quot;%s %.2f %.2f %.2f %.2f &quot; %(str(indexDf.loc[x+1,&#39;Fecha&#39;]), float(indexDf.loc[x+1,strCol1.get()]), float(indexDf.loc[x+1,strCol2.get()]), float(indexDf.loc[x+1,strCol3.get()]),float(indexDf.loc[x+1,strCol4.get()])))</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">filteredDf</span>
+    <span class="k">global</span> <span class="n">indexDf</span>
+    <span class="k">global</span> <span class="n">columns</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">strCol1</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">strCol2</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">strCol3</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">strCol4</span><span class="o">.</span><span class="n">get</span><span class="p">()]</span>
+
+    <span class="n">fieldToGraph</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="n">ventana</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="n">strFieldToGraph</span><span class="p">)</span>
+    <span class="n">fieldToGraph</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">relx</span><span class="o">=.</span><span class="mi">625</span><span class="p">,</span> <span class="n">rely</span><span class="o">=.</span><span class="mi">245</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+    <span class="n">fieldToGraph</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+    <span class="n">fieldToGraph</span><span class="o">.</span><span class="n">current</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">botonGraph</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span> <span class="o">=</span><span class="s2">&quot;graficar&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">grafica</span><span class="p">)</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">relx</span><span class="o">=.</span><span class="mi">75</span><span class="p">,</span> <span class="n">rely</span><span class="o">=.</span><span class="mi">245</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+
+    <span class="n">text</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="n">ventana</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">23</span><span class="p">)</span>
+    <span class="n">text</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">INSERT</span><span class="p">,</span> <span class="s2">&quot;Fecha</span><span class="se">\t\t\t</span><span class="s2">&quot;</span><span class="o">+</span><span class="n">strCol1</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\t\t\t</span><span class="s2">&quot;</span><span class="o">+</span><span class="n">strCol2</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\t\t\t</span><span class="s2">&quot;</span><span class="o">+</span><span class="n">strCol3</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\t\t\t</span><span class="s2">&quot;</span><span class="o">+</span><span class="n">strCol4</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">text</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">relx</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span> <span class="n">rely</span><span class="o">=.</span><span class="mi">65</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dia1</span><span class="o">.</span><span class="n">get</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">strDia1</span> <span class="o">=</span> <span class="n">dia1</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">strDia1</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span><span class="o">+</span><span class="n">dia1</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dia2</span><span class="o">.</span><span class="n">get</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">strDia2</span> <span class="o">=</span> <span class="n">dia2</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">strDia2</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span><span class="o">+</span><span class="n">dia2</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+    <span class="n">filteredDf</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;2018-0&#39;</span><span class="o">+</span><span class="n">mes1</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39;-&#39;</span><span class="o">+</span><span class="n">strDia1</span><span class="p">:</span><span class="s1">&#39;2018-0&#39;</span><span class="o">+</span><span class="n">mes2</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39;-&#39;</span><span class="o">+</span><span class="n">strDia2</span><span class="p">]</span>
+    <span class="n">indexDf</span> <span class="o">=</span> <span class="n">filteredDf</span>
+    <span class="n">indexDf</span><span class="p">[</span><span class="s1">&#39;Fecha&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">filteredDf</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">indexDf</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">filteredDf</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">indexDf</span><span class="o">.</span><span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">filteredDf</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="n">m</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;Dormir_duracion(ms)&#39;</span><span class="p">])</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+        <span class="n">h</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">strCol1</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Dormir_duracion(ms)&#39;</span><span class="p">:</span>
+            <span class="n">text</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">INSERT</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="se">\t\t\t</span><span class="si">%d</span><span class="s2">:</span><span class="si">%02d</span><span class="s2">:</span><span class="si">%02d</span><span class="se">\t\t\t</span><span class="si">%.2f</span><span class="se">\t\t\t</span><span class="si">%.2f</span><span class="se">\t\t\t</span><span class="si">%.2f</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;Fecha&#39;</span><span class="p">]),</span> <span class="n">h</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">s</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">strCol2</span><span class="o">.</span><span class="n">get</span><span class="p">()]),</span>
+                        <span class="nb">float</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">strCol3</span><span class="o">.</span><span class="n">get</span><span class="p">()]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">strCol4</span><span class="o">.</span><span class="n">get</span><span class="p">()])))</span>
+        <span class="k">elif</span> <span class="n">strCol2</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Dormir_duracion(ms)&#39;</span><span class="p">:</span>
+            <span class="n">text</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">INSERT</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="se">\t\t\t</span><span class="si">%.2f</span><span class="se">\t\t\t</span><span class="si">%d</span><span class="s2">:</span><span class="si">%02d</span><span class="s2">:</span><span class="si">%02d</span><span class="se">\t\t\t</span><span class="si">%.2f</span><span class="se">\t\t\t</span><span class="si">%.2f</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;Fecha&#39;</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">strCol1</span><span class="o">.</span><span class="n">get</span><span class="p">()]),</span>
+                        <span class="n">h</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">s</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">strCol3</span><span class="o">.</span><span class="n">get</span><span class="p">()]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">strCol4</span><span class="o">.</span><span class="n">get</span><span class="p">()])))</span>
+        <span class="k">elif</span> <span class="n">strCol3</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Dormir_duracion(ms)&#39;</span><span class="p">:</span>
+            <span class="n">text</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">INSERT</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="se">\t\t\t</span><span class="si">%.2f</span><span class="se">\t\t\t</span><span class="si">%.2f</span><span class="se">\t\t\t</span><span class="si">%d</span><span class="s2">:</span><span class="si">%02d</span><span class="s2">:</span><span class="si">%02d</span><span class="se">\t\t\t</span><span class="si">%.2f</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;Fecha&#39;</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">strCol1</span><span class="o">.</span><span class="n">get</span><span class="p">()]),</span>
+                        <span class="nb">float</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">strCol2</span><span class="o">.</span><span class="n">get</span><span class="p">()]),</span> <span class="n">h</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">s</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">strCol4</span><span class="o">.</span><span class="n">get</span><span class="p">()])))</span>
+        <span class="k">elif</span> <span class="n">strCol4</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Dormir_duracion(ms)&#39;</span><span class="p">:</span>
+            <span class="n">text</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">INSERT</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="se">\t\t\t</span><span class="si">%.2f</span><span class="se">\t\t\t</span><span class="si">%.2f</span><span class="se">\t\t\t</span><span class="si">%.2f</span><span class="se">\t\t\t</span><span class="si">%d</span><span class="s2">:</span><span class="si">%02d</span><span class="s2">:</span><span class="si">%02d</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;Fecha&#39;</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">strCol1</span><span class="o">.</span><span class="n">get</span><span class="p">()]),</span>
+                        <span class="nb">float</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">strCol2</span><span class="o">.</span><span class="n">get</span><span class="p">()]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">strCol3</span><span class="o">.</span><span class="n">get</span><span class="p">()]),</span> <span class="n">h</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">s</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">text</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">INSERT</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="se">\t\t\t</span><span class="si">%.2f</span><span class="se">\t\t\t</span><span class="si">%.2f</span><span class="se">\t\t\t</span><span class="si">%.2f</span><span class="se">\t\t\t</span><span class="si">%.2f</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;Fecha&#39;</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">strCol1</span><span class="o">.</span><span class="n">get</span><span class="p">()]),</span>
+                        <span class="nb">float</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">strCol2</span><span class="o">.</span><span class="n">get</span><span class="p">()]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">strCol3</span><span class="o">.</span><span class="n">get</span><span class="p">()]),</span><span class="nb">float</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">strCol4</span><span class="o">.</span><span class="n">get</span><span class="p">()])))</span></div>
+
+<div class="viewcode-block" id="doc"><a class="viewcode-back" href="../index.html#semestral.doc">[docs]</a><span class="k">def</span> <span class="nf">doc</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;finalmente se crean los elementos para mostrar la GUI.</span>
+
+<span class="sd">        &gt;&gt;&gt; ventana = Tk()</span>
+<span class="sd">            iniciaiza la interfaz grafica que se mostrara al usuario</span>
+
+<span class="sd">        &gt;&gt;&gt; cualquier elemento grafico que lleve la ventana...</span>
+<span class="sd">            despues de inicializar se crea cualquier elemento deseado</span>
+
+<span class="sd">        &gt;&gt;&gt; ventana.mainloop()</span>
+<span class="sd">            con esta linea se mantiene la ventana abierta hasta que el usuario decida cerrarla en la X</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span></div>
+<div class="viewcode-block" id="extras"><a class="viewcode-back" href="../index.html#semestral.extras">[docs]</a><span class="k">def</span> <span class="nf">extras</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Integrantes del grupo de trabajo.</span>
+
+<span class="sd">        &gt;&gt;&gt; Mauro Herrera</span>
+
+<span class="sd">        &gt;&gt;&gt; Imarys Riquelme</span>
+
+<span class="sd">        &gt;&gt;&gt; Marcos Flores</span>
+
+<span class="sd">        &gt;&gt;&gt; Andres Rodriguez</span>
+<span class="sd">    </span>
+<span class="sd">        &gt;&gt;&gt; UTP 2018.</span>
+<span class="sd">    &quot;&quot;&quot;</span></div>
+
+<span class="n">ventana</span> <span class="o">=</span> <span class="n">Tk</span><span class="p">()</span>
+<span class="n">ventana</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Prototipo v1&quot;</span><span class="p">)</span>
+<span class="n">ventana</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s2">&quot;1000x650&quot;</span><span class="p">)</span>
+
+<span class="n">strCol1</span><span class="o">=</span><span class="n">StringVar</span><span class="p">()</span>
+<span class="n">strCol2</span><span class="o">=</span><span class="n">StringVar</span><span class="p">()</span>
+<span class="n">strCol3</span><span class="o">=</span><span class="n">StringVar</span><span class="p">()</span>
+<span class="n">strCol4</span><span class="o">=</span><span class="n">StringVar</span><span class="p">()</span>
+<span class="n">strGraphType</span><span class="o">=</span><span class="n">StringVar</span><span class="p">()</span>
+<span class="n">strFieldToGraph</span><span class="o">=</span><span class="n">StringVar</span><span class="p">()</span>
+<span class="n">integrantes</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Mauro Herrera</span><span class="se">\n</span><span class="s2">Marcos Flores</span><span class="se">\n</span><span class="s2">Andres Rodriguez</span><span class="se">\n</span><span class="s2">Imarys Riquelme&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">relx</span><span class="o">=.</span><span class="mi">8</span><span class="p">,</span> <span class="n">rely</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+<span class="n">label1</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;carga de CSV...&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">relx</span><span class="o">=.</span><span class="mi">105</span><span class="p">,</span> <span class="n">rely</span><span class="o">=.</span><span class="mi">15</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+<span class="n">boton</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span> <span class="o">=</span><span class="s2">&quot;cargar CSV&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">cargar</span><span class="p">)</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">relx</span><span class="o">=.</span><span class="mi">102</span><span class="p">,</span> <span class="n">rely</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+<span class="n">botonFiltered</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span> <span class="o">=</span><span class="s2">&quot;Insertar datos&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">insertar</span><span class="p">)</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">relx</span><span class="o">=.</span><span class="mi">25</span><span class="p">,</span> <span class="n">rely</span><span class="o">=.</span><span class="mi">2</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+
+<span class="n">monthLabel1</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;mes: &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">relx</span><span class="o">=.</span><span class="mi">11</span><span class="p">,</span> <span class="n">rely</span><span class="o">=.</span><span class="mi">2</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+<span class="n">mes1</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="n">ventana</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">mes1</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">relx</span><span class="o">=.</span><span class="mi">145</span><span class="p">,</span> <span class="n">rely</span><span class="o">=.</span><span class="mi">2</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+<span class="n">mes1</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;4&#39;</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span><span class="p">,</span> <span class="s1">&#39;6&#39;</span><span class="p">)</span>
+<span class="n">mes1</span><span class="o">.</span><span class="n">current</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">dayLabel1</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;dia: &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">relx</span><span class="o">=.</span><span class="mi">033</span><span class="p">,</span> <span class="n">rely</span><span class="o">=.</span><span class="mi">2</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+<span class="n">dia1</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="n">ventana</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">dia1</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">relx</span><span class="o">=.</span><span class="mi">067</span><span class="p">,</span> <span class="n">rely</span><span class="o">=.</span><span class="mi">2</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+<span class="n">dia1</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">31</span><span class="p">)))</span>
+<span class="n">dia1</span><span class="o">.</span><span class="n">current</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">monthLabel2</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;mes: &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">relx</span><span class="o">=.</span><span class="mi">11</span><span class="p">,</span> <span class="n">rely</span><span class="o">=.</span><span class="mi">245</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+<span class="n">mes2</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="n">ventana</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">mes2</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">relx</span><span class="o">=.</span><span class="mi">145</span><span class="p">,</span> <span class="n">rely</span><span class="o">=.</span><span class="mi">245</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+<span class="n">mes2</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;4&#39;</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span><span class="p">,</span> <span class="s1">&#39;6&#39;</span><span class="p">)</span>
+<span class="n">mes2</span><span class="o">.</span><span class="n">current</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">dayLabel2</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;dia: &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">relx</span><span class="o">=.</span><span class="mi">033</span><span class="p">,</span> <span class="n">rely</span><span class="o">=.</span><span class="mi">245</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+<span class="n">dia2</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="n">ventana</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">dia2</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">relx</span><span class="o">=.</span><span class="mi">067</span><span class="p">,</span> <span class="n">rely</span><span class="o">=.</span><span class="mi">245</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+<span class="n">dia2</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">31</span><span class="p">)))</span>
+<span class="n">dia2</span><span class="o">.</span><span class="n">current</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">graphLabel</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;tipo de grafica: &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">relx</span><span class="o">=.</span><span class="mi">490</span><span class="p">,</span> <span class="n">rely</span><span class="o">=.</span><span class="mi">2</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+<span class="n">graphType</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="n">ventana</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="n">strGraphType</span><span class="p">)</span>
+<span class="n">graphType</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">relx</span><span class="o">=.</span><span class="mi">604</span><span class="p">,</span> <span class="n">rely</span><span class="o">=.</span><span class="mi">2</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+<span class="n">graphType</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Puntos&#39;</span><span class="p">,</span> <span class="s1">&#39;Barras&#39;</span><span class="p">,</span> <span class="s1">&#39;Linea&#39;</span><span class="p">)</span>
+<span class="n">graphType</span><span class="o">.</span><span class="n">current</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">fieldLabel</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;columna a graficar: &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">relx</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span> <span class="n">rely</span><span class="o">=.</span><span class="mi">245</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+<span class="n">ventana</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+<span class="n">doc</span><span class="p">()</span>
+<span class="n">extras</span><span class="p">()</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Semestral</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Grupo 8.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

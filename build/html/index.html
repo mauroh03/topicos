@@ -1,0 +1,176 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Documentacion semestral de topicos &#8212; Semestral 1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="documentacion-semestral-de-topicos">
+<h1>Documentacion semestral de topicos<a class="headerlink" href="#documentacion-semestral-de-topicos" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="semestral-py-archivo-base-del-proyecto">
+<h2>semestral.py – archivo base del proyecto<a class="headerlink" href="#semestral-py-archivo-base-del-proyecto" title="Permalink to this headline">¶</a></h2>
+<p>A continuacion un adocumentacion experiental del proyecto semestral utilizando la herramienta SPHINIX.</p>
+<span class="target" id="module-semestral"></span><dl class="function">
+<dt id="semestral.doc">
+<code class="descclassname">semestral.</code><code class="descname">doc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/semestral.html#doc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#semestral.doc" title="Permalink to this definition">¶</a></dt>
+<dd><p>finalmente se crean los elementos para mostrar la GUI.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ventana</span> <span class="o">=</span> <span class="n">Tk</span><span class="p">()</span>
+<span class="go">    iniciaiza la interfaz grafica que se mostrara al usuario</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cualquier</span> <span class="n">elemento</span> <span class="n">grafico</span> <span class="n">que</span> <span class="n">lleve</span> <span class="n">la</span> <span class="n">ventana</span><span class="o">...</span>
+<span class="go">    despues de inicializar se crea cualquier elemento deseado</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ventana</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+<span class="go">    con esta linea se mantiene la ventana abierta hasta que el usuario decida cerrarla en la X</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="semestral.cargar">
+<code class="descclassname">semestral.</code><code class="descname">cargar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/semestral.html#cargar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#semestral.cargar" title="Permalink to this definition">¶</a></dt>
+<dd><p>En esta funcion se carga el archivo .csv que contiene ls datos registrados tras 3 meses de uso de la Xiaomi MiBand2.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fullDf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./resumen_mes.csv&#39;</span><span class="p">)</span>
+<span class="go">archivo csv cargado...</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="semestral.insertar">
+<code class="descclassname">semestral.</code><code class="descname">insertar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/semestral.html#insertar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#semestral.insertar" title="Permalink to this definition">¶</a></dt>
+<dd><p>la funcion insertar() inserta los datos del archivo .csv a la tabla que se le muestra al usuario.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">text</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">INSERT</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> </span><span class="si">%.2f</span><span class="s2"> </span><span class="si">%.2f</span><span class="s2"> </span><span class="si">%.2f</span><span class="s2"> </span><span class="si">%.2f</span><span class="s2"> &quot;</span> <span class="o">%</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;Fecha&#39;</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">strCol1</span><span class="o">.</span><span class="n">get</span><span class="p">()]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">strCol2</span><span class="o">.</span><span class="n">get</span><span class="p">()]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">strCol3</span><span class="o">.</span><span class="n">get</span><span class="p">()]),</span><span class="nb">float</span><span class="p">(</span><span class="n">indexDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">strCol4</span><span class="o">.</span><span class="n">get</span><span class="p">()])))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="semestral.grafica">
+<code class="descclassname">semestral.</code><code class="descname">grafica</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/semestral.html#grafica"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#semestral.grafica" title="Permalink to this definition">¶</a></dt>
+<dd><p>la funcion grafica() se encarga de hacer las graficas de las columnas elejidas por el usuario.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Puntos</span><span class="o">.</span>
+<span class="go">    genera una grafica .scatter()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Barars</span><span class="o">.</span>
+<span class="go">    genera una grafica .bars()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Linea</span><span class="o">.</span>
+<span class="go">    genera una grafica .plot()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="semestral.extras">
+<code class="descclassname">semestral.</code><code class="descname">extras</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/semestral.html#extras"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#semestral.extras" title="Permalink to this definition">¶</a></dt>
+<dd><p>Integrantes del grupo de trabajo.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Mauro</span> <span class="n">Herrera</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Imarys</span> <span class="n">Riquelme</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Marcos</span> <span class="n">Flores</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Andres</span> <span class="n">Rodriguez</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">UTP</span> <span class="mf">2018.</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p>Con libertad propongan mejoras en el repositorio del proyecto en <a class="reference external" href="https://github.com/mauroh03/topicos">GitHub</a>.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">Semestral</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Grupo 8.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

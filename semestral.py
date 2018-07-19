@@ -5,7 +5,23 @@ from matplotlib import interactive
 from tkinter import *
 from tkinter import ttk
 
+"""
+.. module:: semestral
+   :platform: Unix, Windows
+   :synopsis: trabajo final topicos.
+
+.. moduleauthor:: Mauro Herrera <mauro-507@hotmail.com>
+
+
+"""
+
 def cargar():
+    """En esta funcion se carga el archivo .csv que contiene ls datos registrados tras 3 meses de uso de la Xiaomi MiBand2.
+
+    >>> fullDf = pd.read_csv('./resumen_mes.csv')
+    archivo csv cargado...
+
+    """
     global df
     global fullDf
     fullDf = pd.read_csv('./resumen_mes.csv')
@@ -34,6 +50,17 @@ def cargar():
     col4.current(0)
 
 def grafica():
+    """la funcion grafica() se encarga de hacer las graficas de las columnas elejidas por el usuario.
+
+        >>> Puntos.
+            genera una grafica .scatter()
+
+        >>> Barars.
+            genera una grafica .bars()
+
+        >>> Linea.
+            genera una grafica .plot()
+    """
     if strGraphType.get() == 'Puntos':
         plt.figure(1)
         plt.scatter(indexDf['Fecha'],indexDf[strFieldToGraph.get()])
@@ -58,6 +85,10 @@ def grafica():
     plt.show()
 
 def insertar():
+    """la funcion insertar() inserta los datos del archivo .csv a la tabla que se le muestra al usuario.
+
+        >>> text.insert(INSERT, "%s %.2f %.2f %.2f %.2f " %(str(indexDf.loc[x+1,'Fecha']), float(indexDf.loc[x+1,strCol1.get()]), float(indexDf.loc[x+1,strCol2.get()]), float(indexDf.loc[x+1,strCol3.get()]),float(indexDf.loc[x+1,strCol4.get()])))
+    """
     global filteredDf
     global indexDf
     global columns
@@ -103,6 +134,33 @@ def insertar():
         else:
             text.insert(INSERT, "%s\t\t\t%.2f\t\t\t%.2f\t\t\t%.2f\t\t\t%.2f\n" %(str(indexDf.loc[x+1,'Fecha']), float(indexDf.loc[x+1,strCol1.get()]),
                         float(indexDf.loc[x+1,strCol2.get()]), float(indexDf.loc[x+1,strCol3.get()]),float(indexDf.loc[x+1,strCol4.get()])))
+
+def doc():
+    """finalmente se crean los elementos para mostrar la GUI.
+
+        >>> ventana = Tk()
+            iniciaiza la interfaz grafica que se mostrara al usuario
+
+        >>> cualquier elemento grafico que lleve la ventana...
+            despues de inicializar se crea cualquier elemento deseado
+
+        >>> ventana.mainloop()
+            con esta linea se mantiene la ventana abierta hasta que el usuario decida cerrarla en la X
+    
+    """
+def extras():
+    """Integrantes del grupo de trabajo.
+
+        >>> Mauro Herrera
+
+        >>> Imarys Riquelme
+
+        >>> Marcos Flores
+
+        >>> Andres Rodriguez
+    
+        >>> UTP 2018.
+    """
 
 ventana = Tk()
 ventana.title("Prototipo v1")
@@ -151,3 +209,5 @@ graphType.current(0)
 
 fieldLabel = Label(ventana, text="columna a graficar: ").place(relx=.5, rely=.245, anchor="center")
 ventana.mainloop()
+doc()
+extras()
