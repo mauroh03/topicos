@@ -47,7 +47,7 @@ def grafica():
         plt.title('Grafico de '+strFieldToGraph.get())
         interactive(True)
     else:
-        plt.figure(2)
+        plt.figure(3)
         plt.plot(indexDf['Fecha'],indexDf[strFieldToGraph.get()])
         plt.ylabel(strFieldToGraph.get())
         plt.title('Grafico de '+strFieldToGraph.get())
@@ -105,7 +105,7 @@ def insertar():
                         float(indexDf.loc[x+1,strCol2.get()]), float(indexDf.loc[x+1,strCol3.get()]),float(indexDf.loc[x+1,strCol4.get()])))
 
 ventana = Tk()
-ventana.title("Main Window")
+ventana.title("Prototipo v1")
 ventana.geometry("1000x650")
 
 strCol1=StringVar()
@@ -114,7 +114,7 @@ strCol3=StringVar()
 strCol4=StringVar()
 strGraphType=StringVar()
 strFieldToGraph=StringVar()
-
+integrantes = Label(ventana, text="Mauro Herrera\nMarcos Flores\nAndres Rodriguez\nImarys Riquelme").place(relx=.8, rely=.1, anchor="center")
 label1 = Label(ventana, text="carga de CSV...").place(relx=.105, rely=.15, anchor="center")
 boton = Button(ventana, text ="cargar CSV", command=cargar).place(relx=.102, rely=.1, anchor="center")
 botonFiltered = Button(ventana, text ="Insertar datos", command=insertar).place(relx=.25, rely=.2, anchor="center")
